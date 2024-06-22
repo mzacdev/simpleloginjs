@@ -1,8 +1,4 @@
-include:
-  - component: gitlab.com/wa-pipelines/nodejs/gitlab-ci-node@0.0.1
-    inputs:
-      image: "registry.hub.docker.com/library/node:20" # this is only an example
-      lint-enabled: "true"
+image: node:latest
 
 stages:
     - install
