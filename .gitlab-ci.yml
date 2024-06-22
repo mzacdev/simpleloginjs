@@ -6,23 +6,23 @@ stages:
     - build
     - run
     
-install_dependencies:
+install:
     stage: install
     script:
         - npm install
-        
+
  test:
     stage: test
     script:
         - npm test
-        
+
  build:
     stage: build
     script:
         - npm build
     only:
         - main
-  
+
  run:
     stage: run
     script:
