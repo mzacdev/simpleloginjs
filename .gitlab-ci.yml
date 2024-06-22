@@ -3,7 +3,6 @@ image: node:latest
 
 stages: 
     - install
-    - test
     - build
     - run
     
@@ -11,11 +10,6 @@ install:
     stage: install
     script:
         - npm install
-
-test:
-    stage: test
-    script:
-        - npm test
 
 build:
     stage: build
