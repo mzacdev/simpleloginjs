@@ -1,6 +1,7 @@
 image: node:latest
 
-stages:
+
+stages: 
     - install
     - test
     - build
@@ -11,19 +12,19 @@ install:
     script:
         - npm install
 
- test:
+test:
     stage: test
     script:
         - npm test
 
- build:
+build:
     stage: build
     script:
         - npm build
     only:
         - main
 
- run:
+run:
     stage: run
     script:
         - echo "run application"
