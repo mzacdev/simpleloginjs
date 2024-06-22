@@ -1,0 +1,31 @@
+images: node:latest
+
+stages:
+    - install
+    - test
+    - build
+    - run
+    
+install_dependencies:
+    stage: install
+    script:
+        - npm install
+        
+ test:
+    stage: test
+    script:
+        - npm test
+        
+ build:
+    stage: build
+    script:
+        - npm build
+    only:
+        - main
+  
+ run:
+    stage: run
+    script:
+        - echo "run application"
+        - node app.js
+        
