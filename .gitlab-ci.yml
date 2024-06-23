@@ -1,5 +1,4 @@
 stages: 
-<<<<<<< HEAD
   - install
   - build
   - run
@@ -9,13 +8,6 @@ cache:
   key: ${CI_COMMIT_REF_SLUG}
   paths:
     - node_modules/
-=======
-    - build
-    - install
-    - run
-    - test
-    
->>>>>>> f0477f84ef97eaa2b40e0e3d142c32eb98c6d126
 
 install_dependencies:
   stage: install
