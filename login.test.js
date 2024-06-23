@@ -1,12 +1,11 @@
-// test/app.test.js
 const http = require('http');
 const assert = require('assert');
 const fs = require('fs');
 const path = require('path');
 
 // Load success and fail page content for comparison
-const successPageContent = fs.readFileSync(path.join(__dirname, '/views/success.html'), 'utf8');
-const failPageContent = fs.readFileSync(path.join(__dirname, '/views/fail.html'), 'utf8');
+const successPageContent = fs.readFileSync(path.join(__dirname, 'views/success.html'), 'utf8');
+const failPageContent = fs.readFileSync(path.join(__dirname, 'views/fail.html'), 'utf8');
 
 // Define the options for the HTTP request
 const options = {
@@ -42,31 +41,24 @@ function performRequest(data, callback) {
     req.end();
 }
 
-// Test cases
-function testLoginSuccess() {
-    const postData = 'username=user&password=password';
-    
-    performRequest(postData, (res, body) => {
-        assert.strictEqual(res.statusCode, 200);
-        assert.strictEqual(body, successPageContent, 'Expected response body to match success page content');
-        console.log('testLoginSuccess passed');
+describe('Login Tests', function() {
+    it('should login successfully with correct credentials', function(done) {
+        const postData = 'username=user&password=password';
+        
+        performRequest(postData, (res, body) => {
+            assert.strictEqual(res.statusCode, 200);
+            assert.strictEqual(body, successPageContent, 'Expected response body to match success page content');
+            done();
+        });
     });
-}
 
-function testLoginFailure() {
-    const postData = 'username=wronguser&password=wrongpassword';
-    
-    performRequest(postData, (res, body) => {
-        assert.strictEqual(res.statusCode, 200);
-        assert.strictEqual(body, failPageContent, 'Expected response body to match fail page content');
-        console.log('testLoginFailure passed');
+    it('should fail login with incorrect credentials', function(done) {
+        const postData = 'username=wronguser&password=wrongpassword';
+        
+        performRequest(postData, (res, body) => {
+            assert.strictEqual(res.statusCode, 200);
+            assert.strictEqual(body, failPageContent, 'Expected response body to match fail page content');
+            done();
+        });
     });
-}
-
-// Run tests
-function runTests() {
-    testLoginSuccess();
-    testLoginFailure();
-}
-
-runTests();
+});

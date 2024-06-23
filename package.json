@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
-    "test": "node login.test.js"
+    "test": "node login.test.js",
+    "install": "mocha"
   },
   "keywords": [],
   "author": "",
