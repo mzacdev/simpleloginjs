@@ -20,7 +20,7 @@ build:
         - main
 
 run:
-   stage: run
+    stage: run
     script:
         - echo "run application"
         - node app.js & sleep 5
