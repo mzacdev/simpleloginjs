@@ -23,7 +23,7 @@ run:
    stage: run
     script:
         - echo "run application"
-       - node app.js & sleep 5
+        - node app.js & sleep 5
 
 test:
     stage: test
