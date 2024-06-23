@@ -18,7 +18,7 @@ run:
     stage: run
     script:
         - echo "run application"
-        - node app.js 
+        - node app.js & sleep 10
 
 test:
     stage: test
