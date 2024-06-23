@@ -1,11 +1,17 @@
-image: node:latest
-
-
 stages: 
     - build
     - run
     - test
     
+
+install_dependencies:
+  stage: install
+  image: node:14
+  script:
+    - npm install
+  artifacts:
+    paths:
+      - node_modules/
 
 build:
     stage: build
@@ -23,4 +29,6 @@ run:
 test:
     stage: test
     script: npm test
+    dependencies:
+    - install_dependencies
         
