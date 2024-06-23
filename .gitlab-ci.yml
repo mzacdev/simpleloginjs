@@ -38,11 +38,15 @@ run:
   script:
     - echo "run application"
     - npm start & sleep 10
+  artifacts:
+    paths:
+      - node_modules/
 
 test:
   stage: test
   image: node:14
   script:
+    - npm start & sleep 5 # Start the server in the background
     - npm test
   dependencies:
     - install_dependencies
