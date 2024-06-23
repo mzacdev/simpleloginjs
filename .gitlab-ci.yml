@@ -1,34 +1,51 @@
 stages: 
-    - build
-    - run
-    - test
-    
+  - install
+  - build
+  - run
+  - test
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - node_modules/
 
 install_dependencies:
   stage: install
   image: node:14
   script:
     - npm install
+  cache:
+    paths:
+      - node_modules/
   artifacts:
     paths:
       - node_modules/
 
 build:
-    stage: build
-    script:
-        - npm install
-    only:
-        - main
+  stage: build
+  image: node:14
+  script:
+    - npm install
+  cache:
+    paths:
+      - node_modules/
+  only:
+    - main
 
 run:
-    stage: run
-    script:
-        - echo "run application"
-        - node app.js & sleep 10
+  stage: run
+  image: node:14
+  script:
+    - echo "run application"
+    - npm start & sleep 10
 
 test:
-    stage: test
-    script: npm test
-    dependencies:
+  stage: test
+  image: node:14
+  script:
+    - npm test
+  dependencies:
     - install_dependencies
-        
+  cache:
+    paths:
+      - node_modules/
